@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+
+<functions>
+	<library>libc.so.6:libm.so.6:libdl.so:libpthread.so.0:libncurses.so.5</library>
+
+	<!-- Standard IO and utils -->
+	<printf>Int:Pointer</printf>
+	<scanf>Int:Pointer</scanf>
+	<sscanf>Int:Pointer,Pointer</sscanf>
+	<puts>Int:Pointer</puts>
+	<getchar>Char</getchar>
+	<exit>Int:Integer</exit>
+	<perror>Int:Pointer</perror>
+	<sprintf>Int:Pointer,Pointer</sprintf>
+	<putchar>Int:Integer</putchar>
+	<fopen>Ptr:Pointer,Pointer</fopen>
+	<fclose>Int:Pointer</fclose>
+	<fread>Int:Pointer,Integer,Integer,Pointer</fread>
+	<fwrite>Int:Pointer,Integer,Integer,Pointer</fwrite>
+	<fgets>Str:Pointer,Integer,Pointer</fgets>
+	<fprintf>Int:Pointer,Pointer</fprintf>
+	<fseek>Int:Pointer,Integer,Integer</fseek>
+	<ftell>Int:Pointer</ftell>
+	<fgetpos>Int:Pointer,Pointer</fgetpos>
+	<fsetpos>Int:Pointer,Pointer</fsetpos>
+	<fileno>Int:Pointer</fileno>
+	<feof>Int:Pointer</feof>
+	<getcwd>Str:Pointer,Integer</getcwd>
+	<sleep>Int:Integer</sleep>
+	<system>Int:Pointer</system>
+	<opendir>Ptr:Pointer</opendir>
+	<readdir>Ptr:Pointer</readdir>
+	<closedir>Int:Pointer</closedir>
+	<seekdir>Int:Pointer,Integer</seekdir>
+	<telldir>Int:Pointer</telldir>
+	<fnmatch>Int:Pointer,Pointer,Integer</fnmatch>
+
+	<!-- Low level function -->
+	<write>Int:Integer,Pointer,Integer</write>
+	<read>Int:Integer,Pointer,Integer</read>
+	<open>Int:Pointer,Integer</open>
+	<close>Int:Integer</close>
+	<lseek>Int:Integer,Integer,Integer</lseek>
+	<ioctl>Int:Integer,Integer</ioctl>
+	<execve>Int:Pointer,Pointer,Pointer</execve>
+	<execvp>Int:Pointer,Pointer</execvp>
+	<execlp>Int:Pointer,Pointer</execlp>
+	<fork>Int</fork>
+	<ptrace>Int:Integer,Integer,Pointer,Pointer</ptrace>
+	<usleep>Int:Integer</usleep>
+	<fsync>Int:Integer</fsync>
+	<unlink>Int:Pointer</unlink>
+	<kill>Int:Integer,Integer</kill>
+	<mmap>Ptr:Pointer,Integer,Integer,Integer,Integer,Integer</mmap>
+	<munmap>Int:Pointer,Integer</munmap>
+	<pread>Int:Integer,Pointer,Integer,Integer</pread>
+	<pwrite>Int:Integer,Pointer,Integer,Integer</pwrite>
+	<access>Int:Pointer,Integer</access>
+	<mprotect>Int:Pointer,Integer,Integer</mprotect>
+	<clone>Int:Pointer,Pointer,Integer,Pointer</clone>
+
+	<!-- Networking -->
+	<socket>Int:Integer,Integer,Integer</socket>
+	<connect>Int:Integer,Pointer,Integer</connect>
+	<listen>Int:Integer,Integer</listen>
+	<accept>Int:Integer,Pointer,Pointer</accept>
+	<bind>Int:Integer,Pointer,Integer</bind>
+	<send>Int:Integer,Pointer,Integer,Integer</send>
+	<recv>Int:Integer,Pointer,Integer,Integer</recv>
+	<inet_addr>Int:Pointer</inet_addr>
+	<gethostbyaddr>Ptr:Pointer,Integer,Integer</gethostbyaddr>
+	<gethostbyname>Ptr:Pointer</gethostbyname>
+	<inet_ntop>Ptr:Integer,Pointer,Pointer,Integer</inet_ntop>
+
+	<!-- Memory management -->
+	<malloc>Ptr:Integer</malloc>
+	<realloc>Ptr:Pointer,Integer</realloc>
+	<free>Int:Pointer</free>
+	<memset>Ptr:Pointer,Integer,Integer</memset>
+	<memcpy>Ptr:Pointer,Pointer,Integer</memcpy>
+
+	<!-- String management -->
+	<strcmp>Int:Pointer,Pointer</strcmp>
+	<strlen>Int:Pointer</strlen>
+	<strdup>Ptr:Pointer</strdup>
+	<strndup>Ptr:Pointer,Integer</strndup>
+	<strtol>Int:Pointer,Pointer,Integer</strtol>
+	<strtoul>Int:Pointer,Pointer,Integer</strtoul>
+	<atoi>Int:Pointer</atoi>
+
+	<!-- Time functions -->
+	<time>Int:Pointer</time>
+	<localtime>Ptr:Pointer</localtime>
+	<gettimeofday>int:Pointer,Pointer</gettimeofday>
+	<asctime>Str:Pointer</asctime>
+	<ctime>Str:Pointer</ctime>
+
+	<!-- Math functions -->
+	<sin>Dbl:Double</sin>
+	<asin>Dbl:Double</asin>
+	<cos>Dbl:Double</cos>
+	<acos>Dbl:Double</acos>
+	<tan>Dbl:Double</tan>
+	<atan>Dbl:Double</atan>
+	<pow>Dbl:Double,Double</pow>
+	<sqrt>Dbl:Double</sqrt>
+	<srand>Int:Integer</srand>
+	<rand>Int</rand>
+
+	<!-- Multi-threading -->
+	<pthread_create>Int:Pointer,Pointer,Pointer,Pointer</pthread_create>
+	<pthread_join>Int:Int,Pointer</pthread_join>
+
+	<!-- Ncurses -->
+	<initscr>Int</initscr>
+	<noecho>Int</noecho>
+	<cbreak>Int</cbreak>
+	<refresh>Int</refresh>
+	<clear>Int</clear>
+	<nodelay>Int:Pointer,Integer</nodelay>
+	<wrefresh>Int:Pointer</wrefresh>
+	<printw>Int:Pointer</printw>
+
+</functions>
