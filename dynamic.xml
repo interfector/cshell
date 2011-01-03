@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <functions>
-	<library>libc.so.6:libm.so.6:libdl.so:libpthread.so.0:libncurses.so.5</library>
+	<library>libc.so.6:libm.so.6:libdl.so:libpthread.so.0:libcrypt.so.1:libX11.so:libXtst.so</library>
 
 	<!-- Standard IO and utils -->
 	<printf>Int:Pointer</printf>
@@ -34,6 +34,8 @@
 	<seekdir>Int:Pointer,Integer</seekdir>
 	<telldir>Int:Pointer</telldir>
 	<fnmatch>Int:Pointer,Pointer,Integer</fnmatch>
+	<dirname>Ptr:Pointer</dirname>
+	<basename>Ptr:Pointer</basename>
 
 	<!-- Low level function -->
 	<write>Int:Integer,Pointer,Integer</write>
@@ -58,6 +60,11 @@
 	<access>Int:Pointer,Integer</access>
 	<mprotect>Int:Pointer,Integer,Integer</mprotect>
 	<clone>Int:Pointer,Pointer,Integer,Pointer</clone>
+	<crypt>Ptr:Pointer,Pointer</crypt>
+	<getuid>Int</getuid>
+	<geteuid>Int</geteuid>
+	<setuid>Int:Integer</setuid>
+	<seteuid>Int:Integer</seteuid>
 
 	<!-- Networking -->
 	<socket>Int:Integer,Integer,Integer</socket>
@@ -78,6 +85,7 @@
 	<free>Int:Pointer</free>
 	<memset>Ptr:Pointer,Integer,Integer</memset>
 	<memcpy>Ptr:Pointer,Pointer,Integer</memcpy>
+	<memfrob>Ptr:Pointer,Integer</memfrob>
 
 	<!-- String management -->
 	<strcmp>Int:Pointer,Pointer</strcmp>
@@ -87,6 +95,8 @@
 	<strtol>Int:Pointer,Pointer,Integer</strtol>
 	<strtoul>Int:Pointer,Pointer,Integer</strtoul>
 	<atoi>Int:Pointer</atoi>
+	<strtok>Ptr:Pointer,Pointer</strtok>
+	<strfry>Ptr:Pointer</strfry>
 
 	<!-- Time functions -->
 	<time>Int:Pointer</time>
@@ -111,14 +121,13 @@
 	<pthread_create>Int:Pointer,Pointer,Pointer,Pointer</pthread_create>
 	<pthread_join>Int:Int,Pointer</pthread_join>
 
-	<!-- Ncurses -->
-	<initscr>Int</initscr>
-	<noecho>Int</noecho>
-	<cbreak>Int</cbreak>
-	<refresh>Int</refresh>
-	<clear>Int</clear>
-	<nodelay>Int:Pointer,Integer</nodelay>
-	<wrefresh>Int:Pointer</wrefresh>
-	<printw>Int:Pointer</printw>
+	<!-- libX11 and libXtst -->
+	<XOpenDisplay>Ptr:Pointer</XOpenDisplay>
+	<XFlush>Int:Pointer</XFlush>
+	<XWidthOfScreen>Int:ointer</XWidthOfScreen>
+	<XHeightOfScreen>Int:ointer</XHeightOfScreen>
+	<XDefaultScreenOfDisplay>Ptr:Pointer</XDefaultScreenOfDisplay>
+	<XDefaultRootWindow>Ptr:Pointer</XDefaultRootWindow>
+	<XWarpPointer>Int:Integer,Integer,Integer,Integer,Integer,Integer,Integer,Integer,Integer</XWarpPointer>
 
 </functions>
