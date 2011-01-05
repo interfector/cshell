@@ -2,7 +2,7 @@ XML2LIB = -lxml2
 XML2INC = /usr/include/libxml2
 
 INCS = -I/usr/include -I${XML2INC} -Iinclude
-LIBS = ${XML2LIB} -ldl -lpcre
+LIBS = ${XML2LIB} -ldl -lpcre -lreadline
 
 CFLAGS = ${INCS}
 LDFLAGS = -s ${LIBS}

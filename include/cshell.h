@@ -5,6 +5,8 @@
 #define CH_BLOCK 5
 
 /* #include <gc.h>  garbage collector */
+#include <readline/readline.h>
+#include <readline/history.h>
 
 typedef enum { Integer, Pointer, Double } Types;
 typedef enum { Int, Ptr, Str, Char, Db } Return;
@@ -39,5 +41,6 @@ int dlink(ParseCtx*);
 int load(ParseCtx*);
 
 char* strndup(char*,int);
+char* generator(const char*,int);
 
 #endif

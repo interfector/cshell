@@ -9,6 +9,9 @@
 extern DllGlobal lib;
 extern int show_proto;
 
+extern char** commands;
+extern int    command_index;
+
 void
 load_prototypes(const char * file)
 {
@@ -86,6 +89,14 @@ load_prototypes(const char * file)
 				{
 					if(!xmlStrcmp(node->name, (xmlChar *)lib.syms[i].name ))
 					{
+						if(!commands)
+							commands = malloc(sizeof(char*)*CH_BLOCK);
+
+						if( command_index % CH_BLOCK )
+							commands = realloc( commands, ( CH_BLOCK + command_index ) * sizeof(FILE*) );
+
+						commands[command_index++] = strdup( lib.syms[i].name );
+
 						token = strtok( (char*)xmlStrdup(node->children->content), ":" );
 
 						if(!strcmp(token,"Int"))

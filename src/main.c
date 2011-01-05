@@ -10,6 +10,9 @@ DllGlobal lib = { 0, 0, 0, 0 };
 char* specialPointer;
 int show_proto = 0;
 
+char** commands = 0;
+int    command_index = 0;
+
 void
 banner(void)
 {
@@ -19,6 +22,28 @@ banner(void)
 		"/ _(_-< ' \\/ -_) | |\n"
 		"\\__/__/_||_\\___|_|_|\n"
 		"                    \n");
+}
+
+char*
+generator(const char* text, int state)
+{
+	static int list_index = 0, len;
+	char *name;
+
+	if (!state)
+	{
+	    	list_index = 0;
+	    	len = strlen (text);
+	}
+
+	while ((name = commands[list_index]))
+	{
+	    	list_index++;
+	    	if (strncmp (name, text, len) == 0)
+	         	return strdup(name);
+	}
+
+	return NULL;
 }
 
 char**
@@ -323,37 +348,40 @@ main(int argc,char **argv)
 {
 	ParseCtx* ctx;
 	int i, j, ret = 0xbad;
-	char buf[BUFSIZ] = { 0 };
+	char* buf;
 
 	banner();
 
+	rl_completion_entry_function = generator;
+
 	if(argv[1] && !strcmp(argv[1],"--prototype"))
 		show_proto = 1;
+
+	commands = malloc( sizeof(char*) * 4 );
+	commands[command_index++] = strdup("quit");
+	commands[command_index++] = strdup("help");
+	commands[command_index++] = strdup("clear_ptr");
+	commands[command_index++] = strdup("prototype");
 
 	load_prototypes("./dynamic.xml");
 
 	specialPointer = malloc( BUFSIZ );
 	memset( specialPointer, 0, BUFSIZ );
 
-	printf(">> ");
-
-	while(fgets( buf, BUFSIZ, stdin ))
+	while((buf = readline(">> ")))
 	{
-		buf[strlen(buf)-1] = 0;
+		rl_bind_key('\t',rl_complete);
 
 		if( !buf[0] || buf[0] == '\n' || buf[0] == '#' )
-		{
-			printf(">> ");
 			continue;
-		}
+
+		if(strchr(buf,'#'))
+			*(char*)strchr(buf,'#') = 0;
 
 		ctx = pcre_parse_string( buf );
 
 		if( !ctx )
-		{
-			printf(">> ");
 			continue;
-		}
 
 		if(!strcmp( ctx->keyword, "clear_ptr" ))
 			memset( specialPointer, 0, BUFSIZ );
@@ -508,12 +536,11 @@ main(int argc,char **argv)
 				printf("Unknown command.\n");
 		}
 
-		memset( buf, 0, BUFSIZ );
+		add_history( buf );
 
 		free( ctx->args );
 		free( ctx );
-
-		printf(">> ");
+		free( buf );
 	}
 
 	return 0;
