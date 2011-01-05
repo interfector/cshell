@@ -178,7 +178,7 @@ pcre_parse_string( char* string )
 
 		if( !matched )
 		{
-			printf("* Syntax error.\n");
+			printf("* Syntax error.\n", string);
 
 			free( ctx );
 			return NULL;
@@ -375,8 +375,8 @@ main(int argc,char **argv)
 		if( !buf[0] || buf[0] == '\n' || buf[0] == '#' )
 			continue;
 
-		if(strchr(buf,'#'))
-			*(char*)strchr(buf,'#') = 0;
+		if(strstr(buf,"//"))
+			*(char*)strstr(buf,"//") = 0;
 
 		ctx = pcre_parse_string( buf );
 
